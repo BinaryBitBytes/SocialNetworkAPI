@@ -1,39 +1,67 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 
 // Schema to create a course model
-const userSchema = new Schema(
+const reactionSchema = new Schema(
   {
-    Name: {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxlength: 280,
+    },
+    username: {
       type: String,
       required: true,
     },
-    userName: {
-      type: String,
-      required: true,
-      default: true,
-    },
-    loginDate: {
+    createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
+      get: formatDate,
     },
-    Friends: {
-      type: String,
-      required: true,    },
-    areFriends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
   },
   {
     toJSON: {
+      getters: true,
+    },
+    id: false,
+  }
+);
+
+const thoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      required: true,
+      maxlength: 320,
+      minlength: 1,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: new Date(),
+      get: formatDate,
+    },
+    reactions: [reactionSchema],
+  },
+  {
+    toJSON: {
+      getters: true,
       virtuals: true,
     },
     id: false,
   }
 );
 
-const User = model('User', userSchema);
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
 
-module.exports = User;
+const Thought = model("thought", thoughtSchema);
+
+module.exports = Thought;

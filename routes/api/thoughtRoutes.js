@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const thoughtRoutes = require('./thoughtRoutes');
+const userRoutes = require('./userRoutes');
+
 const {
   getUsers,
   getSingleUser,
@@ -7,6 +10,9 @@ const {
   addUser,
   removeUser,
 } = require('../../controllers/userController');
+
+router.use('/thoughts', thoughtRoutes);
+router.use('/users', userRoutes);
 
 const user = router.route('/').get(getUsers).post(createUser);
 
