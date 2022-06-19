@@ -2,7 +2,7 @@ const { Schema, model, email } = require('mongoose');
 const userSchema = require('./User');
 
 // Schema to create Student model
-const userSchema = new Schema(
+const runSchema = new Schema(
   {
     username: {
       type: String,
@@ -28,10 +28,10 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual("friendCount").get(function () {
+runSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
-const User = model("user", userSchema);
+const User = model("user", runSchema);
 
 module.exports = User;
