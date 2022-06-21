@@ -1,11 +1,6 @@
 const {ObjectId} = require("mongoose").Types;
 const {User, Thought} = require("../models");
 
-// Aggregate function to get the number of users overall
-// const totalUsers = async () =>
-//   User.aggregate([{$count: "numberOfUsers"}])
-//     .then((numberOfUsers) => numberOfUsers);
-
 module.exports = {
   // Get all users
   getUsers(req, res) {
@@ -31,7 +26,6 @@ module.exports = {
           ? res.status(404).json({ message: 'No user with that ID' })
           : res.json({
               user,
-              // grade: await grade(req.params.userId),
             })
       )
       .catch((err) => {
