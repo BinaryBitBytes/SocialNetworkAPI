@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const thoughtRoutes = {
-  createReaction,
-  deleteReaction,
+const {
   getThoughts,
   getSingleThought,
   createThought,
   updateThought,
   deleteThought,
+  createReaction,
+  deleteReaction,
 } = require('../../controllers/thoughtController.js');
 
 
@@ -27,5 +27,3 @@ router
 .delete(deleteReaction);
 
 module.exports = router;
-module.exports = thoughtRoutes;
-
