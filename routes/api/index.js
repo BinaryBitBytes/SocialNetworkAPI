@@ -4,8 +4,8 @@ const userRoutes = require('./userRoutes');
 const apiRoutes = require('./api');
 
 router.use('/api', apiRoutes);
-router.use('/thought', thoughtRoutes);
-router.use('/user', userRoutes);
+router.use('/thoughts', thoughtRoutes);
+router.use('/users', userRoutes);
 router.use((req, res) => res.send('Wrong route!'));
 
 module.exports = router;
