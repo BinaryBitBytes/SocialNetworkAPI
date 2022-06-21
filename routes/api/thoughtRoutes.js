@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const thoughtRoutes = {
+  createReaction,
+  deleteReaction,
   getThoughts,
   getSingleThought,
   createThought,
