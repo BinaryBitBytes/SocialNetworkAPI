@@ -1,4 +1,5 @@
 const { Schema, Types, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
 
 // Schema to create a course model
 const reactionSchema = new Schema(
@@ -35,7 +36,7 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      maxlength: 320,
+      maxlength: 280,
       minlength: 1,
     },
     username: {
